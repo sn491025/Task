@@ -1,12 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, ActivityIndicator, Button } from 'react-native';
+import Headers  from './compo.js/Headers';
+import Body  from './compo.js/Body';
 
-export default function App() {
+
+
+
+
+export default function App({navigation}) {
+  
+  
+  const onPress = () => {
+    navigation.push('Page2')
+  }
+
+
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    <View>
+      {/* Header */}
+      <Headers />
+      <View style={styles.center}>
+        {/* Body */}
+        <Body />
+      </View>   
+        <Button  title='Next'  onPress={onPress} />
+
+        <ActivityIndicator size={'large'} color={'#8B00FF'} />
     </View>
+   </TouchableWithoutFeedback>
+
   );
 }
 
@@ -17,4 +41,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  center: {
+    margin: 50,
+   alignItems:'center',
+  }
 });
