@@ -1,20 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, TextInput, Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
 
+export default function Body() {
 
-export default function Body({ navigation }) {
+    const navigation = useNavigation(); 
 
-   
-
+    const [name, setName] = useState();
     return(
     <View>
         <TextInput 
         placeholder='Enter Your Name'
         style ={styles.inputext}
+        onChangeText={setName}
         />
-        <View style={styles.forButton}>
-        <Button title='Next'/>
-        </View>
+         <Button  title='Next'  onPress={ () => navigation.navigate("Page" , {
+            username: name
+         }) } />
     </View>
     )
 }

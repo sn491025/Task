@@ -1,15 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, ActivityIndicator, Image } from 'react-native';
 
+
 export default function Image(){
     return(
         <View>
             <Image 
-                style={styles.imagessss}
+                style={styles.imagessss1}
                 source={require('/Users/Chekhra/Task/Uicompo/assets/Avengers Endgame.jpeg')}
             />
             <Image 
-            style={styles.imagessss}
+            style={styles.imgesss2}
             />
         </View>
     )

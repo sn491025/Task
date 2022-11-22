@@ -1,48 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, ActivityIndicator, Button } from 'react-native';
-import Headers  from './compo.js/Headers';
-import Body  from './compo.js/Body';
-
-
-
-
-
-export default function App({navigation}) {
+import React from 'react';
   
-  
-  const onPress = () => {
-    navigation.push('Page2')
-  }
+import Main from './compo.js/Main';
+import Page2 from './compo.js/Page2';
+import Buttons from './compo.js/Button';
+import Flatlist from './compo.js/Flatlist';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 
 
+
+
+
+export default function App({navigation}) { 
+  const stack = createStackNavigator();
   return (
-   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-    <View>
-      {/* Header */}
-      <Headers />
-      <View style={styles.center}>
-        {/* Body */}
-        <Body />
-      </View>   
-        <Button  title='Next'  onPress={onPress} />
+    <NavigationContainer>
+      <stack.Navigator>
+        <stack.Screen name="Main" component={Main} options={{title:'MainPage'}}/>
+        <stack.Screen name="Page" component={Page2} options={{
+          title:'secondpage',
+          headerStyle:{backgroundColor: '#FF1F00'}
+          }}/>
+         <stack.Screen name='Button' component={Buttons} options={{
+          title: 'ButtonPage',
+          headerStyle: {backgroundColor:'#FF9B00'}
+          }} />
+         <stack.Screen name='Flatlist' component={Flatlist} options={{
+          title: 'FlatList Page',
+          headerStyle: {backgroundColor:'#D8FF00'}
+          }} />
+      </stack.Navigator>
+    </NavigationContainer>
 
-        <ActivityIndicator size={'large'} color={'#8B00FF'} />
-    </View>
-   </TouchableWithoutFeedback>
-
-  );
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  center: {
-    margin: 50,
-   alignItems:'center',
-  }
-});
+
